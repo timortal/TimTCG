@@ -4,7 +4,7 @@ import { RARITY_CONFIG } from '@/lib/cards'
 export default function FifaCard({ card, size = 'normal', flipped = false, onClick, glowing = false, locked = false }) {
   const isSmall = size === 'small'
   const w = isSmall ? 110 : 200
-  const h = isSmall ? 154 : 280
+  const h = isSmall ? 154 : 310
   const rarityInfo = RARITY_CONFIG[card.rarity]
   const statEntries = Object.entries(card.stats)
 
