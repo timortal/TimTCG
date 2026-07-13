@@ -238,7 +238,7 @@ export default function ShopPage() {
               { icon: '⭐', label: 'Être sub', amount: '+10 / 15 min' },
               { icon: '💎', label: 'Membre du Club (VIP)', amount: '+20 / 15 min' },
               { icon: '💬', label: 'Chatter', amount: '+0.05 par message' },
-              { icon: '💎', label: 'Prime de VIP', amount: '+ 2000' },
+              { icon: '💎', label: 'Prime de VIP', amount: '+2000' },
               { icon: '🎯', label: 'Évènements spéciaux', amount: 'Bonus' },
             ].map(item => (
               <div key={item.label} style={{
