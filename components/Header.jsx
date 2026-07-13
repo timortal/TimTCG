@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
-import Image from 'next/image' import logo from '@/assets/Tim_Logo_Full.png'
+import Image from 'next/image' 
+import logo from '@/assets/Tim_Logo_Full.png'
 
 const TABS = [
   { href: '/',            label: 'Boutique',   icon: '🛍️' },
