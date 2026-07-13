@@ -46,7 +46,7 @@ export default function Header({ user, timcash }) {
       }}>
         {/* Logo */}
         <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <Image src={logo} alt="TimCards" width={57} height={32} />
+            <Image src={logo} alt="TimCards" width={85} height={48} />
           <div>
             <div style={{
               color: '#FFD700', fontWeight: 900, fontSize: 18,
