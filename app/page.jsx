@@ -230,13 +230,15 @@ export default function ShopPage() {
             borderRadius: 20, padding: '28px 32px',
             maxWidth: 320, flex: '1 1 260px',
           }}>
-            <div style={{ color: '#FFD700', fontWeight: 800, fontSize: 14, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 20 }}>
-              Comment gagner du TimCash ?
+            <div style={{ color: '#FFD700', fontWeight: 800, fontSize: 14, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 20, textAlign: 'center' }}>
+              Comment gagner des TimCashs ?
             </div>
             {[
-              { icon: '📺', label: 'Regarder le live', amount: '+10 / 5 min' },
-              { icon: '💬', label: 'Chatter', amount: '+5 par message' },
-              { icon: '⭐', label: 'Être abonné', amount: 'x2 tous les gains' },
+              { icon: '📺', label: 'Regarder le stream', amount: '+2 / 15 min' },
+              { icon: '⭐', label: 'Être sub', amount: '+10 / 15 min' },
+              { icon: '💎', label: 'Membre du Club (VIP)', amount: '+20 / 15 min' },
+              { icon: '💬', label: 'Chatter', amount: '+0.05 par message' },
+              { icon: '💎', label: 'Prime de VIP', amount: '+ 2000' },
               { icon: '🎯', label: 'Évènements spéciaux', amount: 'Bonus' },
             ].map(item => (
               <div key={item.label} style={{
@@ -252,7 +254,7 @@ export default function ShopPage() {
               </div>
             ))}
             <div style={{ color: '#475569', fontSize: 11, marginTop: 8, textAlign: 'center' }}>
-              Géré automatiquement par Wizebot sur le stream de Tim
+              Attribution automatique par Wizebot sur le stream de Timortal
             </div>
           </div>
         </div>
