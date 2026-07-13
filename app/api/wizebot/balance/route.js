@@ -18,10 +18,9 @@ export async function GET(request) {
 
   try {
     const res = await fetch(
-      `https://api.wizebot.tv/api/currency/${channel}/${username}`,
+      `https://wapi.wizebot.tv/api/currency/${apiKey}/get/${username}`,
       {
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
       }
@@ -33,7 +32,7 @@ export async function GET(request) {
     }
 
     const data = await res.json()
-    return NextResponse.json({ balance: data.value ?? data.amount ?? 0 })
+    return NextResponse.json({ balance: data.currency ?? 0 })
   } catch (err) {
     console.error('Wizebot balance error:', err)
     return NextResponse.json({ balance: 0 })
