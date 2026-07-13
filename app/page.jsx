@@ -223,6 +223,7 @@ export default function ShopPage() {
               </div>
             )}
           </div>
+        </div>
 
         {/* Bandeau horizontal — Comment gagner du TimCash */}
         <div style={{
