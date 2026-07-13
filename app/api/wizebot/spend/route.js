@@ -18,8 +18,7 @@ export async function POST(request) {
   try {
     // D'abord vérifier le solde
     const balanceRes = await fetch(
-      `https://api.wizebot.tv/api/currency/${channel}/${username}`,
-      { headers: { 'Authorization': `Bearer ${apiKey}` } }
+      `https://wapi.wizebot.tv/api/currency/${apiKey}/get/${username}`,
     )
 
     if (!balanceRes.ok) {
@@ -27,7 +26,7 @@ export async function POST(request) {
     }
 
     const balanceData = await balanceRes.json()
-    const currentBalance = balanceData.value ?? balanceData.amount ?? 0
+    const currentBalance = balanceData.currency ?? 0
 
     if (currentBalance < amount) {
       return NextResponse.json({ error: 'Solde insuffisant' }, { status: 402 })
@@ -35,21 +34,16 @@ export async function POST(request) {
 
     // Débiter le montant
     const spendRes = await fetch(
-      `https://api.wizebot.tv/api/currency/${channel}/${username}/remove/${amount}`,
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json',
-        },
-      }
+      `https://wapi.wizebot.tv/api/currency/${apiKey}/action/remove/${username}/${amount}/0`,
+      { method: 'POST' }
     )
 
-    if (!spendRes.ok) {
+    const spendData = await spendRes.json()
+    if (!spendRes.ok || !spendData.success || !spendData.action_success) {
       return NextResponse.json({ error: 'Erreur lors du débit' }, { status: 500 })
     }
-
     return NextResponse.json({ success: true, newBalance: currentBalance - amount })
+    
   } catch (err) {
     console.error('Wizebot spend error:', err)
     return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 })
