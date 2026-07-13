@@ -134,7 +134,7 @@ export default function ShopPage() {
             TIM<span style={{ WebkitTextFillColor: '#fff' }}>CARDS</span>
           </h1>
           <p style={{ color: '#64748b', fontSize: 15, marginTop: 10, letterSpacing: 1 }}>
-            Collecte les membres de la communauté avec ton TimCash
+            Collectionne les cartes de la communauté en revivant les grands moments du stream
           </p>
         </div>
 
