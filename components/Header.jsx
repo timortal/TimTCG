@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
+import Image from 'next/image' import logo from '@/assets/Tim_Logo_Full.png'
 
 const TABS = [
   { href: '/',            label: 'Boutique',   icon: '🛍️' },
@@ -44,7 +45,7 @@ export default function Header({ user, timcash }) {
       }}>
         {/* Logo */}
         <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontSize: 28 }}>🃏</span>
+          <Image src={logo} alt="TimCards" width={32} height={32} />
           <div>
             <div style={{
               color: '#FFD700', fontWeight: 900, fontSize: 18,
