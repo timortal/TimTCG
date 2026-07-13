@@ -224,15 +224,19 @@ export default function ShopPage() {
             )}
           </div>
 
-          {/* Comment gagner du TimCash */}
+        {/* Bandeau horizontal — Comment gagner du TimCash */}
+        <div style={{
+          background: '#0f172a', border: '1px solid #1e3a5f',
+          borderRadius: 20, padding: '28px 32px',
+        }}>
+          <div style={{ color: '#FFD700', fontWeight: 800, fontSize: 14, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 22, textAlign: 'center' }}>
+            Comment gagner des TimCashs ?
+          </div>
           <div style={{
-            background: '#0f172a', border: '1px solid #1e3a5f',
-            borderRadius: 20, padding: '28px 32px',
-            maxWidth: 320, flex: '1 1 260px',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            gap: '18px 28px',
           }}>
-            <div style={{ color: '#FFD700', fontWeight: 800, fontSize: 14, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 20, textAlign: 'center' }}>
-              Comment gagner des TimCashs ?
-            </div>
             {[
               { icon: '📺', label: 'Regarder le stream', amount: '+2 / 15 min' },
               { icon: '⭐', label: 'Être sub', amount: '+10 / 15 min' },
@@ -242,20 +246,17 @@ export default function ShopPage() {
               { icon: '🎯', label: 'Évènements spéciaux', amount: 'Bonus' },
             ].map(item => (
               <div key={item.label} style={{
-                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                marginBottom: 14, paddingBottom: 14,
-                borderBottom: '1px solid #1e3a5f',
+                display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
+                textAlign: 'center', padding: '8px 4px',
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <span style={{ fontSize: 18 }}>{item.icon}</span>
-                  <span style={{ fontSize: 13, color: '#94A3B8' }}>{item.label}</span>
-                </div>
+                <span style={{ fontSize: 20 }}>{item.icon}</span>
+                <span style={{ fontSize: 13, color: '#94A3B8' }}>{item.label}</span>
                 <span style={{ fontSize: 12, color: '#34d399', fontWeight: 700 }}>{item.amount}</span>
               </div>
             ))}
-            <div style={{ color: '#475569', fontSize: 11, marginTop: 8, textAlign: 'center' }}>
-              Attribution automatique par Wizebot sur le stream de Timortal
-            </div>
+          </div>
+          <div style={{ color: '#475569', fontSize: 11, marginTop: 20, textAlign: 'center' }}>
+            Attribution automatique par Wizebot sur le stream de Timortal
           </div>
         </div>
       </main>
