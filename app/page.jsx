@@ -154,7 +154,7 @@ export default function ShopPage() {
         </div>
 
         {/* Bloc achat paquet */}
-        <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap', alignItems: 'flex-start', marginBottom: 40  }}>
           <div style={{
             background: 'linear-gradient(135deg, #0f172a 0%, #1e2d4a 50%, #0f172a 100%)',
             border: '1px solid #FFD70033',
