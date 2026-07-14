@@ -146,7 +146,7 @@ export default function ShopPage() {
       const balRes = await fetch(`/api/wizebot/balance?username=${username}`)
       if (balRes.ok) { const d = await balRes.json(); setTimcash(d.balance) }
 
-      const rolesRes = await fetch(`/api/twitch/roles?username=${username}`)
+      const rolesRes = await fetch(`/api/twitch?username=${username}`)
       if (rolesRes.ok) { const d = await rolesRes.json(); setUserRoles(d.roles || []) }
     }
     loadUser()
