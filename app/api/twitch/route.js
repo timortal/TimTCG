@@ -45,9 +45,14 @@ export async function GET(request) {
       return NextResponse.json({ roles: [] })
     }
 
+    // 4. Si c'est le broadcaster lui-même → accès total
+    if (userId === broadcasterId) {
+      return NextResponse.json({ roles: ['subscriber', 'vip', 'moderator', 'broadcaster'] })
+    }
+
     const roles = []
 
-    // 4. Vérifier si sub
+    // 5. Vérifier si sub
     const subRes = await fetch(
       `https://api.twitch.tv/helix/subscriptions/user?broadcaster_id=${broadcasterId}&user_id=${userId}`,
       { headers: { 'Client-Id': clientId, 'Authorization': `Bearer ${accessToken}` } }
@@ -57,7 +62,7 @@ export async function GET(request) {
       if (subData.data?.length > 0) roles.push('subscriber')
     }
 
-    // 5. Vérifier si VIP
+    // 6. Vérifier si VIP
     const vipRes = await fetch(
       `https://api.twitch.tv/helix/channels/vips?broadcaster_id=${broadcasterId}&user_id=${userId}`,
       { headers: { 'Client-Id': clientId, 'Authorization': `Bearer ${accessToken}` } }
@@ -67,7 +72,7 @@ export async function GET(request) {
       if (vipData.data?.length > 0) roles.push('vip')
     }
 
-    // 6. Vérifier si modérateur
+    // 7. Vérifier si modérateur
     const modRes = await fetch(
       `https://api.twitch.tv/helix/moderation/moderators?broadcaster_id=${broadcasterId}&user_id=${userId}`,
       { headers: { 'Client-Id': clientId, 'Authorization': `Bearer ${accessToken}` } }
