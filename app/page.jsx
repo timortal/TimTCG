@@ -6,6 +6,24 @@ import FifaCard from '@/components/FifaCard'
 import PackOpener from '@/components/PackOpener'
 import { CARDS, RARITY_CONFIG, PACK_COST, generatePack } from '@/lib/cards'
 
+// ─── Sélection aléatoire des cartes vitrine ───────────────────────────────────
+function getShowcaseCards(cards) {
+  const legendaries = cards.filter(c => c.rarity === 'legendary')
+  const epics = cards.filter(c => c.rarity === 'epic')
+
+  // Carte 1 : légendaire aléatoire
+  const card1 = legendaries[Math.floor(Math.random() * legendaries.length)]
+
+  // Carte 2 : épique aléatoire
+  const card2 = epics[Math.floor(Math.random() * epics.length)]
+
+  // Carte 3 : totalement aléatoire, différente des deux premières
+  const remaining = cards.filter(c => c.id !== card1?.id && c.id !== card2?.id)
+  const card3 = remaining[Math.floor(Math.random() * remaining.length)]
+
+  return [card1, card2, card3].filter(Boolean)
+}
+
 export default function ShopPage() {
   const supabase = createClient()
   const [user, setUser] = useState(null)
@@ -14,6 +32,9 @@ export default function ShopPage() {
   const [openingPack, setOpeningPack] = useState(null)
   const [notification, setNotification] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  // Tirage unique au chargement de la page
+  const [showcaseCards] = useState(() => getShowcaseCards(CARDS))
 
   const showNotif = (msg, type = 'success') => {
     setNotification({ msg, type })
@@ -138,9 +159,9 @@ export default function ShopPage() {
           </p>
         </div>
 
-        {/* Aperçu cartes */}
+        {/* Aperçu cartes — aléatoires à chaque visite */}
         <div style={{ display: 'flex', gap: 20, justifyContent: 'center', marginBottom: 56, flexWrap: 'wrap' }}>
-          {CARDS.slice(0, 3).map((card, i) => (
+          {showcaseCards.map((card, i) => (
             <div key={card.id} style={{
               transform: `rotate(${(i - 1) * 3}deg)`,
               transition: 'transform 0.3s',
@@ -154,7 +175,7 @@ export default function ShopPage() {
         </div>
 
         {/* Bloc achat paquet */}
-        <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap', alignItems: 'flex-start', marginBottom: 40  }}>
+        <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap', alignItems: 'flex-start', marginBottom: 40 }}>
           <div style={{
             background: 'linear-gradient(135deg, #0f172a 0%, #1e2d4a 50%, #0f172a 100%)',
             border: '1px solid #FFD70033',
@@ -264,3 +285,4 @@ export default function ShopPage() {
     </div>
   )
 }
+
